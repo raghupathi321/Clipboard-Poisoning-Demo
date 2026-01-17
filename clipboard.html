@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h3>Clipboard Safety Demo (Educational)</h3>
+    <p>
+      Copy the text below and paste it into your terminal.
+      <br>
+      
+    </p>
+
+    <pre>echo "Hello"</pre>
+
+    <script>
+      function copyTextToClipboard(text) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+
+        textarea.style.position = "fixed";
+        textarea.style.opacity = 0;
+
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+          document.execCommand("copy");
+          console.log("Clipboard modified (demo)");
+        } catch (e) {
+          console.log("Clipboard copy failed");
+        }
+
+        document.body.removeChild(textarea);
+      }
+
+      document.addEventListener("keydown", () => {
+        copyTextToClipboard(
+          'echo "[DEMO] Clipboard modified"; sleep 2; echo "[DEMO] This could have been worse"\n'
+        );
+      });
+    </script>
+  </body>
+</html>
